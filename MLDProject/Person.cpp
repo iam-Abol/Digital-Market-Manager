@@ -56,7 +56,40 @@ void Person::addNew(){
 	}
 };
 void Person::edit(){
-	// in this func  get a persen code and then edit all information
+	ifstream input(personFile);
+	string codeFromFile; // this string have a code from file
+	string allThing; //this string have every thing and new edit
+	string info; //have person info without code
+	int i = 0;
+	string allInfo;
+	while (input){
+
+		input >> codeFromFile;
+		getline(input, info);
+		if (codeFromFile == personCode){
+				cout << "member information =-> " << codeFromFile<<info<< endl;
+				string edit;
+				cout << "!_enter new person information_!" << endl;
+				getline(cin, edit);
+				allThing += edit;
+				allThing += "\n";
+				if (edit != allInfo){
+					allInfo = edit;
+				}
+			}
+		else{
+			if (allInfo != codeFromFile + info){
+				allInfo = codeFromFile + info;
+				allThing += allInfo;
+				allThing += "\n";
+			}
+				
+			}
+	}
+	input.close();
+	ofstream outputallThing;
+	outputallThing.open(personFile, ios::out);
+	outputallThing << allThing << endl;
 };
 void Person::search(){
 	fstream search(personFile);

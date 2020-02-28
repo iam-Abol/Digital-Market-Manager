@@ -86,12 +86,13 @@ void DigitalEquitment::editEquitment(){
 			allLine += "\n";
 		}
 		//if==true show the information and then get new information and put to allline
-		if (fileCode == code){
+		else{
 			getline(search, allInfo);
 			cout << fileCode << allInfo << endl;
 			cout << "enter new information : \n";
 			string newInformation;
 			getline(cin, newInformation);
+			allLine += fileCode;
 			allLine += newInformation;
 			allLine += "\n";
 		}
