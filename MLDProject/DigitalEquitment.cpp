@@ -135,4 +135,10 @@ void DigitalEquitment::searchEquitment(string searchcode){
 
 };
 
-
+bool sellCanDo(){
+	// if number==enough return true
+	//else =false
+}
+void sell(bool){ //bool from search can do func
+	//this do selling
+}

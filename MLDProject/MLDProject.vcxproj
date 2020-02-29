@@ -83,6 +83,7 @@
     <ClInclude Include="Mobile.h" />
     <ClInclude Include="Notebook.h" />
     <ClInclude Include="Person.h" />
+    <ClInclude Include="Sell.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -92,6 +93,7 @@
     <ClCompile Include="Mobile.cpp" />
     <ClCompile Include="Notebook.cpp" />
     <ClCompile Include="Person.cpp" />
+    <ClCompile Include="Sell.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
