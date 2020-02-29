@@ -66,27 +66,25 @@ void Person::edit(){
 
 		input >> codeFromFile;
 		getline(input, info);
-		if (codeFromFile == personCode){
-			if (i == 0){
-				cout << "member information =-> " << codeFromFile << info << endl;
-				i++;
-			}
-			string edit;
-			cout << "!_enter new person information_!" << endl;
-			getline(cin, edit);
-			allThing += edit;
-			allThing += "\n";
-			if (edit != allInfo){
-				allInfo = edit;
-			}
-		}
-		else{
-			if (allInfo != codeFromFile + info){
-				allInfo = codeFromFile + info;
-				allThing += allInfo;
+		if (codeFromFile + info != allInfo){
+			if (codeFromFile == personCode){
+				string edit;
+				cout << "person information =--> " << codeFromFile << info << endl;
+				cout << "!_enter new person information_!" << endl;
+				getline(cin, edit);
+				allThing += edit;
 				allThing += "\n";
-			}
+				allInfo = codeFromFile + info;
 
+			}
+			else{
+				if (allInfo != codeFromFile + info){
+					allInfo = codeFromFile + info;
+					allThing += allInfo;
+					allThing += "\n";
+				}
+
+			}
 		}
 	}
 	input.close();
