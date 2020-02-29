@@ -67,24 +67,27 @@ void Person::edit(){
 		input >> codeFromFile;
 		getline(input, info);
 		if (codeFromFile == personCode){
-				cout << "member information =-> " << codeFromFile<<info<< endl;
-				string edit;
-				cout << "!_enter new person information_!" << endl;
-				getline(cin, edit);
-				allThing += edit;
-				allThing += "\n";
-				if (edit != allInfo){
-					allInfo = edit;
-				}
+			if (i == 0){
+				cout << "member information =-> " << codeFromFile << info << endl;
+				i++;
 			}
+			string edit;
+			cout << "!_enter new person information_!" << endl;
+			getline(cin, edit);
+			allThing += edit;
+			allThing += "\n";
+			if (edit != allInfo){
+				allInfo = edit;
+			}
+		}
 		else{
 			if (allInfo != codeFromFile + info){
 				allInfo = codeFromFile + info;
 				allThing += allInfo;
 				allThing += "\n";
 			}
-				
-			}
+
+		}
 	}
 	input.close();
 	ofstream outputallThing;

@@ -71,35 +71,43 @@ void DigitalEquitment::addNewEquitment( ){
 }
 
 void DigitalEquitment::editEquitment(){
-	// open file
-	fstream search(fileName);
-	string fileCode;
+	ifstream input(fileName);
+	string allThing;
+	string codeFromFile;
+	string info;
 	string allInfo;
-	string allLine;
-	while (search){
-		search >> fileCode;
-		// if==true allline+=line
-		if (fileCode != code){
-			getline(search, allInfo);
-			allLine += fileCode;
-			allLine += allInfo;
-			allLine += "\n";
-		}
-		//if==true show the information and then get new information and put to allline
-		else{
-			getline(search, allInfo);
-			cout << fileCode << allInfo << endl;
-			cout << "enter new information : \n";
-			string newInformation;
-			getline(cin, newInformation);
-			allLine += fileCode;
-			allLine += newInformation;
-			allLine += "\n";
+
+	while (input){
+		input >> codeFromFile;
+		getline(input, info);
+		if (allInfo != codeFromFile + info){
+			if (codeFromFile == code){
+				cout << "information =->" << codeFromFile << info << endl;
+				cout << "!_enter new information_!" << endl;
+				string edit;
+				getline(cin, edit);
+
+				if (edit != allInfo){
+
+					allThing += edit;
+					allThing += "\n";
+					allInfo = codeFromFile + info;
+				}
+			}
+			else{
+				if (allInfo != code + info){
+					allInfo = codeFromFile + info;
+					allThing += allInfo;
+					allThing += "\n";
+				}
+			}
 		}
 	}
 	
-	cout << allLine << endl;
-	search << allLine << endl;
+	input.close();
+	fstream outToFile;
+	outToFile.open(fileName, ios::out);
+	outToFile << allThing << endl;
 	
 }
 void DigitalEquitment::printAllEquitment(){
