@@ -29,8 +29,8 @@ void Person::addNew(){
 	// put every thing on one string;
 	string allPersonInfo;
 	allPersonInfo += personCode;
-	allPersonInfo += fname;
-	allPersonInfo += lname;
+	allPersonInfo += firstName;
+	allPersonInfo += lastName;
 
 	allPersonInfo += personPhoneNumber;
 	//open persen file

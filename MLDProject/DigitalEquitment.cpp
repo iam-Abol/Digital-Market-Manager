@@ -7,7 +7,7 @@
 
 string allThing;
 using namespace std;
-
+DigitalEquitment::DigitalEquitment(){};
 
 
 DigitalEquitment::DigitalEquitment(string code, string name, string brand, int number, string details, int price)
@@ -108,14 +108,14 @@ void DigitalEquitment::editEquitment(){
 void DigitalEquitment::addNewEquitment( ){
 	// convert object value to one string
 	string allInfo;
-	allInfo += code;
-	allInfo += name;
-	allInfo += brand;
+	allInfo += code+" ";
+	allInfo += name + " ";
+	allInfo += brand + " ";
 	string number1 = to_string(number);
-	allInfo += number1;
-	allInfo += details;
+	allInfo += number1 + " ";
+	allInfo += details + " ";
 	string price1 = to_string(price);
-	allInfo += price1;
+	allInfo += price1 + " ";
 	allInfo += otherThing;
 	/// open file
 	fstream search(fileName);
