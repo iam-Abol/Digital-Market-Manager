@@ -28,11 +28,11 @@ Person::~Person()
 void Person::addNew(){
 	// put every thing on one string;
 	string allPersonInfo;
-	allPersonInfo += personCode;
-	allPersonInfo += firstName;
-	allPersonInfo += lastName;
+	allPersonInfo += personCode+" ";
+	allPersonInfo += firstName + " ";
+	allPersonInfo += lastName + " ";
 
-	allPersonInfo += personPhoneNumber;
+	allPersonInfo += personPhoneNumber + " ";
 	//open persen file
 	fstream search(personFile);
 	bool s = true;
