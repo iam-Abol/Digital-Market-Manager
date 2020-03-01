@@ -24,6 +24,7 @@ public:
 	void printAllEquitment();
 	void searchEquitment();
 	void writeToFile();
+	//void sell();
 	void sell();
 };
 

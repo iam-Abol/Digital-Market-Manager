@@ -205,3 +205,56 @@ void DigitalEquitment::printAllEquitment(){
 //	}
 //}
 
+void DigitalEquitment::sell(){
+	ifstream input(fileName);
+	string codeFromFile;
+	string info;
+	string allInfo;// this have one line and this is add to allLine
+	string allLine;// this string have every thing from file and new number for sell
+	while (input){
+		input >> codeFromFile;
+		string codeFromFile2 = codeFromFile;
+		if (codeFromFile+info!=allInfo){
+			if (codeFromFile == code){
+				allInfo += codeFromFile + " ";
+				input >> codeFromFile;
+				allInfo += codeFromFile + " ";
+				input >> codeFromFile;
+				allInfo += codeFromFile + " ";
+				input >> codeFromFile;// codeFromFile==number
+				string fileNumber = codeFromFile;
+				int equitmentNumber = stoi(fileNumber);
+				if (this->number <= equitmentNumber){
+					cout << "sell completed" << endl;
+					equitmentNumber += this->number;
+					string newEquitmentNumber = to_string(equitmentNumber);
+					allInfo += newEquitmentNumber;
+					getline(input, info);
+					allInfo += info;
+					allLine += allInfo;
+					allLine += "\n";
+				}
+				else{
+					cout << "Sale failed";
+					getline(input, info);
+					allInfo += info;
+					allLine += allInfo;
+					allLine += "\n";
+				}
+				}
+
+			if (codeFromFile2 != code){
+				getline(input , info);
+				allLine += codeFromFile2;
+				allInfo += info;
+				allLine += allInfo;
+				allLine += "\n";
+			}
+
+			}
+	}
+	input.close();
+	ofstream output;
+	output.open(fileName, ios::out);
+	output << allLine << endl;
+}

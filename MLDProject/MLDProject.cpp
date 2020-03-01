@@ -11,8 +11,8 @@
 using namespace std;
 int _tmain(int argc, _TCHAR* argv[])
 {
-	DigitalEquitment obj("1");
-	obj.editEquitment();
+	DigitalEquitment obj("1",10);
+	obj.sell();
 	system("pause");
 	return 0;
 }
