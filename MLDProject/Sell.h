@@ -3,6 +3,7 @@
 class Sell
 {
 private :
+    const std::string sellFile = "sell.txt";
 	std::string personCode;
 	std::string equitmentCode;
 	std::string number;

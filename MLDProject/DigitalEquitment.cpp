@@ -5,7 +5,7 @@
 #include <fstream>
 #include <string>
 
-
+string allThing;
 using namespace std;
 DigitalEquitment::DigitalEquitment()
 {
@@ -34,9 +34,71 @@ DigitalEquitment::DigitalEquitment(string code, int number){
 DigitalEquitment::~DigitalEquitment()
 {
 }
+int DigitalEquitment::search(){
+	ifstream input(fileName);
+	string codeFromFile;
+	while (input){
+		input >> codeFromFile;
+		if (codeFromFile == code){
+			int filePointerAddres = input.tellg();
+			return filePointerAddres;
+		}
+		else{
+			string info;
+			getline(input, info);
+		}
+	}
+}
+void DigitalEquitment::searchEquitment(){
+	ifstream findEquitment(fileName);
+	int filePointerAddress = search();
 
+	findEquitment.seekg(filePointerAddress,ios::beg );
+	string info;
+	getline(findEquitment, info);
+	cout << "equitment information -> " <<code<< info << endl;
+};
 
+void DigitalEquitment::editEquitment(){
+	ifstream input(fileName);
+	string allThing;
+	string codeFromFile;
+	string info;
+	string allInfo;
+	
+	while (input){
+		input >> codeFromFile;
+		getline(input, info);
+		if (allInfo != codeFromFile + info){
+			if (codeFromFile == code){
+				cout << "information =->" << codeFromFile << info << endl;
+				cout << "!_enter new information_!" << endl;
+				string edit;
+				getline(cin, edit);
 
+				if (edit != allInfo){
+
+					allThing += edit;
+					allThing += "\n";
+					allInfo = codeFromFile + info;
+				}
+			}
+			else{
+				if (allInfo != code + info){
+					allInfo = codeFromFile + info;
+					allThing += allInfo;
+					allThing += "\n";
+				}
+			}
+		}
+	}
+
+	input.close();
+	fstream outToFile;
+	outToFile.open(fileName, ios::out);
+	outToFile << allThing << endl;
+
+}
 void DigitalEquitment::addNewEquitment( ){
 	// convert object value to one string
 	string allInfo;
@@ -74,46 +136,7 @@ void DigitalEquitment::addNewEquitment( ){
 	
 }
 
-void DigitalEquitment::editEquitment(){
-	ifstream input(fileName);
-	string allThing;
-	string codeFromFile;
-	string info;
-	string allInfo;
 
-	while (input){
-		input >> codeFromFile;
-		getline(input, info);
-		if (allInfo != codeFromFile + info){
-			if (codeFromFile == code){
-				cout << "information =->" << codeFromFile << info << endl;
-				cout << "!_enter new information_!" << endl;
-				string edit;
-				getline(cin, edit);
-
-				if (edit != allInfo){
-
-					allThing += edit;
-					allThing += "\n";
-					allInfo = codeFromFile + info;
-				}
-			}
-			else{
-				if (allInfo != code + info){
-					allInfo = codeFromFile + info;
-					allThing += allInfo;
-					allThing += "\n";
-				}
-			}
-		}
-	}
-	
-	input.close();
-	fstream outToFile;
-	outToFile.open(fileName, ios::out);
-	outToFile << allThing << endl;
-	
-}
 void DigitalEquitment::printAllEquitment(){
 	ifstream print(fileName);
 	while (print){
@@ -124,20 +147,7 @@ void DigitalEquitment::printAllEquitment(){
 
 
 }
-void DigitalEquitment::searchEquitment(string searchcode){
-	ifstream findEquitment(fileName);
-	while (findEquitment){
-		string code;
-		findEquitment >> code;
-		if (code == searchcode){
-			string information;
-			getline(findEquitment, information);
-			code += information;
-			cout <<"equitment information : "<< code << endl;
-		}
-	}
 
-};
 
 
 //void DigitalEquitment::sell(){

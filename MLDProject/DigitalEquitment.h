@@ -22,7 +22,7 @@ public:
 	void addNewEquitment();
 	void editEquitment();
 	void printAllEquitment();
-	void searchEquitment(string searchcode);
+	void searchEquitment();
 	void writeToFile();
 	void sell();
 };
