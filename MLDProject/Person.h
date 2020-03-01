@@ -7,13 +7,13 @@ class Person
 private :
 	const string personFile = "customer.txt";
 	string personCode;
-	string  fname;
-	string lname;
+	string firstName;
+	string lastName;
 	string personPhoneNumber;
 public:
-	Person();
-	Person(string code, string name1, string lname1, string phoneNumber);
-	Person(string code1);
+	
+	Person(string code, string firstName, string lastName, string phoneNumber);
+	Person(string code);
 	~Person();
 	void addNew();
 	void edit();

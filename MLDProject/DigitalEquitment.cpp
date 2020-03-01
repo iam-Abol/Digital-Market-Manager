@@ -7,23 +7,29 @@
 
 string allThing;
 using namespace std;
-DigitalEquitment::DigitalEquitment()
-{
-}
 
 
-DigitalEquitment::DigitalEquitment(string code1, string name1, string brand1, int number1, string details1, int price1)
+
+DigitalEquitment::DigitalEquitment(string code, string name, string brand, int number, string details, int price)
 {		 
-	 code=code1;
-	 name=name1;
-	 brand=brand1;
-	 number=number1;
-	 details=details1;
-	 price=price1;
-}
-
-DigitalEquitment::DigitalEquitment(string code1){
-	code = code1;
+	 this->code=code;
+	 this->name = name;
+	 this->brand = brand;
+	 this->number = number;
+	 this->details = details;
+	 this->price = price;
+};
+DigitalEquitment::DigitalEquitment(string code, string name, string brand, int number, string details, int price, string otherThing){
+	this->code = code;
+	this->name = name;
+	this->brand = brand;
+	this->number = number;
+	this->details = details;
+	this->price = price;
+	this->otherThing = otherThing;
+};
+DigitalEquitment::DigitalEquitment(string code){
+	this->code = code;
 };
 DigitalEquitment::DigitalEquitment(string code, int number){
 	this->code = code;
@@ -110,6 +116,7 @@ void DigitalEquitment::addNewEquitment( ){
 	allInfo += details;
 	string price1 = to_string(price);
 	allInfo += price1;
+	allInfo += otherThing;
 	/// open file
 	fstream search(fileName);
 	

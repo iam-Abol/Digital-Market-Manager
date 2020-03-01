@@ -12,10 +12,12 @@ private :
 	int number;
 	string details;
 	int price;
+	string otherThing;
 public:
 	DigitalEquitment();
-	DigitalEquitment(string code1, string name1, string brand, int n1, string details1, int price1);
-	DigitalEquitment(string code1);
+	DigitalEquitment(string code, string name, string brand, int number, string details, int price);
+	DigitalEquitment(string code, string name, string brand, int number, string details, int price,string otherThing);
+	DigitalEquitment(string code);
 	DigitalEquitment(string code,int number);
 	~DigitalEquitment();
 	int search();

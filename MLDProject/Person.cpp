@@ -6,19 +6,17 @@
 #include <fstream>
 #include <string>
 using namespace std;
-Person::Person()
-{
-}
 
-Person::Person(string code,string name1, string lname1 , string phoneNumber){
-	personCode = code;
-	fname = name1;
-	lname = lname1;
 
-	personPhoneNumber = phoneNumber;
+Person::Person(string code, string firstName, string lastName, string phoneNumber){
+	this->personCode = code;
+	this->firstName = firstName;
+	this->lastName = lastName;
+
+	this->personPhoneNumber = phoneNumber;
 };
-Person::Person(string code1){
-	personCode = code1;
+Person::Person(string code){
+	this->personCode = code;
 }
 Person::~Person()
 {
