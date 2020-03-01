@@ -25,7 +25,11 @@ DigitalEquitment::DigitalEquitment(string code1, string name1, string brand1, in
 DigitalEquitment::DigitalEquitment(string code1){
 	code = code1;
 };
-
+DigitalEquitment::DigitalEquitment(string code, int number){
+	this->code = code;
+	
+	this->number = number;
+};
 
 DigitalEquitment::~DigitalEquitment()
 {
@@ -135,10 +139,59 @@ void DigitalEquitment::searchEquitment(string searchcode){
 
 };
 
-bool sellCanDo(){
-	// if number==enough return true
-	//else =false
-}
-void sell(bool){ //bool from search can do func
-	//this do selling
-}
+
+//void DigitalEquitment::sell(){
+//	ifstream input(fileName);
+//	string codeFromFile;
+//	string allThing;
+//	string allInfo;
+//	string info;
+//	bool s = true;
+//	while (input){
+//		input >> codeFromFile;
+//		
+//		if (codeFromFile + info != allInfo){
+//			if (codeFromFile == code){
+//				allInfo += codeFromFile;
+//				string InfoFromFile;
+//				allInfo += InfoFromFile + " ";
+//				input >> InfoFromFile;
+//				allInfo += InfoFromFile+" ";
+//				input >> InfoFromFile;
+//				allInfo += InfoFromFile + " ";
+//				input >> InfoFromFile;
+//				string fileNumber1 = InfoFromFile;
+//				int fileNumber = stoi(fileNumber1);
+//				if (this->number <= fileNumber){
+//					fileNumber -= this->number;
+//					string newNumber = to_string(fileNumber);
+//					allInfo += newNumber + " ";
+//				}
+//				else{
+//					s = false;
+//				}
+//				getline(input, info);
+//				allInfo += info;
+//				allThing += allInfo;
+//				allThing += "\n";
+//			}
+//			if (codeFromFile != code){
+//				allThing += codeFromFile;
+//				getline(input, info);
+//				allThing += info;
+//				allThing += "\n";
+//				allInfo = codeFromFile + info;
+//			}
+//		}
+//	}
+//	input.close();
+//	if (s == true){
+//		cout << "!-Sales completed-!" << endl;
+//		ofstream output(fileName);
+//		output << allThing << endl;
+//	}
+//	else{
+//		cout << "Sales failed because the device did not have the desired number";
+//	}
+//}
+

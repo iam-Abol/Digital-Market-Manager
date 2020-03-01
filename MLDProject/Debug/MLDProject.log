@@ -1,4 +1,4 @@
-﻿Build started 02/29/2020 09:29:02 ق.ظ.
+﻿Build started 03/01/2020 09:11:18 ق.ظ.
      1>Project "G:\ABOL LIFE\projects\MLDProject\MLDProject\MLDProject.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          E:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\MLDProject.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt MLDProject.cpp
@@ -9,10 +9,11 @@
          Debug\Mobile.obj
          Debug\Notebook.obj
          Debug\Person.obj
+         Debug\Sell.obj
          Debug\stdafx.obj
          MLDProject.vcxproj -> G:\ABOL LIFE\projects\MLDProject\Debug\MLDProject.exe
      1>Done Building Project "G:\ABOL LIFE\projects\MLDProject\MLDProject\MLDProject.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.65
+Time Elapsed 00:00:00.92
