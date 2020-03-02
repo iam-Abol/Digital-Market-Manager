@@ -223,7 +223,7 @@ void DigitalEquitment::sell(){
 		string codeFromFile2 = codeFromFile;
 		if (codeFromFile+info!=allInfo){
 			if (codeFromFile == code){
-				allInfo += codeFromFile + " ";
+				allInfo = codeFromFile + " ";
 				input >> codeFromFile;
 				allInfo += codeFromFile + " ";
 				input >> codeFromFile;
@@ -233,26 +233,32 @@ void DigitalEquitment::sell(){
 				int equitmentNumber = stoi(fileNumber);
 				if (this->number <= equitmentNumber){
 					cout << "sell completed" << endl;
-					equitmentNumber += this->number;
+					equitmentNumber -= this->number;
 					string newEquitmentNumber = to_string(equitmentNumber);
 					allInfo += newEquitmentNumber;
 					getline(input, info);
 					allInfo += info;
 					allLine += allInfo;
+
 					allLine += "\n";
+					codeFromFile = "";
+					info = allInfo;
 				}
 				else{
+					allInfo += codeFromFile;
 					cout << "Sale failed";
 					getline(input, info);
 					allInfo += info;
 					allLine += allInfo;
 					allLine += "\n";
+					codeFromFile ="";
+					info = allInfo;
 				}
 				}
 
 			if (codeFromFile2 != code){
 				getline(input , info);
-				allLine += codeFromFile2;
+				allInfo = codeFromFile2;
 				allInfo += info;
 				allLine += allInfo;
 				allLine += "\n";
