@@ -1,3 +1,2 @@
-1 mobile j 2 lg 1200 red
-2 tv g+ 1 ll 120 df
+2 mobile m 2 sd
 

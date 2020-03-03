@@ -6,8 +6,7 @@
 #include <fstream>
 #include <string>
 using namespace std;
-Person::Person(){
-};
+
 
 Person::Person(string code, string firstName, string lastName, string phoneNumber){
 	this->personCode = code;

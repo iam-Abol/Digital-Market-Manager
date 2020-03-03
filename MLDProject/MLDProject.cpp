@@ -12,10 +12,10 @@ using namespace std;
 int _tmain(int argc, _TCHAR* argv[])
 {
 	
-	DigitalEquitment obj();
-
-
-
+	
+	DigitalEquitment obj1("1",1);
+	obj1.sell();
+	
 	system("pause");
 	return 0;
 }

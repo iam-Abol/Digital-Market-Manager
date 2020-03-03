@@ -11,13 +11,13 @@ DigitalEquitment::DigitalEquitment(){};
 
 
 DigitalEquitment::DigitalEquitment(string code, string name, string brand, int number, string details, int price)
-{		 
-	 this->code=code;
-	 this->name = name;
-	 this->brand = brand;
-	 this->number = number;
-	 this->details = details;
-	 this->price = price;
+{
+	this->code = code;
+	this->name = name;
+	this->brand = brand;
+	this->number = number;
+	this->details = details;
+	this->price = price;
 };
 DigitalEquitment::DigitalEquitment(string code, string name, string brand, int number, string details, int price, string otherThing){
 	this->code = code;
@@ -33,7 +33,7 @@ DigitalEquitment::DigitalEquitment(string code){
 };
 DigitalEquitment::DigitalEquitment(string code, int number){
 	this->code = code;
-	
+
 	this->number = number;
 };
 
@@ -59,10 +59,10 @@ void DigitalEquitment::searchEquitment(){
 	ifstream findEquitment(fileName);
 	int filePointerAddress = search();
 
-	findEquitment.seekg(filePointerAddress,ios::beg );
+	findEquitment.seekg(filePointerAddress, ios::beg);
 	string info;
 	getline(findEquitment, info);
-	cout << "equitment information -> " <<code<< info << endl;
+	cout << "equitment information -> " << code << info << endl;
 };
 
 void DigitalEquitment::editEquitment(){
@@ -71,7 +71,7 @@ void DigitalEquitment::editEquitment(){
 	string codeFromFile;
 	string info;
 	string allInfo;
-	
+
 	while (input){
 		input >> codeFromFile;
 		getline(input, info);
@@ -105,10 +105,10 @@ void DigitalEquitment::editEquitment(){
 	outToFile << allThing << endl;
 
 }
-void DigitalEquitment::addNewEquitment( ){
+void DigitalEquitment::addNewEquitment(){
 	// convert object value to one string
 	string allInfo;
-	allInfo += code+" ";
+	allInfo += code + " ";
 	allInfo += name + " ";
 	allInfo += brand + " ";
 	string number1 = to_string(number);
@@ -119,7 +119,7 @@ void DigitalEquitment::addNewEquitment( ){
 	allInfo += otherThing;
 	/// open file
 	fstream search(fileName);
-	
+
 	///search
 	bool same = true;
 	string line;
@@ -131,16 +131,16 @@ void DigitalEquitment::addNewEquitment( ){
 			same = false;
 			break;
 		}
-			
+
 	}
 	if (same == true){
 		search.close();
 		search.open("items.txt", ios::app);
 		search << allInfo << endl;
 		cout << "New device added" << endl;
-		
+
 	}
-	
+
 }
 
 
@@ -165,11 +165,11 @@ bool DigitalEquitment::sell(){
 	string info;
 	string allInfo;// this have one line and this is add to allLine
 	string allLine;// this string have every thing from file and new number for sell
-	bool flag=false;
+	bool flag = false;
 	while (input){
 		input >> codeFromFile;
 		string codeFromFile2 = codeFromFile;
-		if (codeFromFile+info!=allInfo){
+		if (codeFromFile + info != allInfo){
 			if (codeFromFile == code){
 				allInfo = codeFromFile + " ";
 				input >> codeFromFile;
@@ -180,7 +180,7 @@ bool DigitalEquitment::sell(){
 				string fileNumber = codeFromFile;
 				int equitmentNumber = stoi(fileNumber);
 				if (this->number <= equitmentNumber){
-					
+					cout << "sell completed" << endl;
 					flag = true;
 					equitmentNumber -= this->number;
 					string newEquitmentNumber = to_string(equitmentNumber);
@@ -196,30 +196,31 @@ bool DigitalEquitment::sell(){
 				}
 				else{
 					allInfo += codeFromFile;
-					
+					cout << "sell not completed" << endl;
 					getline(input, info);
 					allInfo += info;
 					allLine += allInfo;
 					allLine += "\n";
-					codeFromFile ="";
+					codeFromFile = "";
 					info = allInfo;
 				}
-				}
+			}
 
 			if (codeFromFile2 != code){
-				getline(input , info);
+				getline(input, info);
 				allInfo = codeFromFile2;
 				allInfo += info;
 				allLine += allInfo;
 				allLine += "\n";
 			}
 
-			}
+		}
 	}
 	input.close();
 	ofstream output;
 	output.open(fileName, ios::out);
 	output << allLine << endl;
+	deleteTheUnavailableEquitment();
 	if (flag == true)
 		return true;
 	else
@@ -228,33 +229,80 @@ bool DigitalEquitment::sell(){
 void DigitalEquitment::lottery(){
 
 	int line = rand();
-	cout << line << endl;
 	ifstream input(fileName);
 	string equitmentCodeFromFile;
 	string info;
+	int numberOfLines = 0;
+	string allInfo;
+	fstream inputNumberOfLine(fileName);
+	while (inputNumberOfLine){
+		getline(inputNumberOfLine, info);
+		if (info != allInfo){
+			numberOfLines++;
+			allInfo = info;
+		}
+	}
+	numberOfLines--;
+	line = line%numberOfLines;
 	int i = 0;
 	bool flag = false;
 
-	while (true){
-		while (input){
-			input >> equitmentCodeFromFile;
-			getline(input, info);
-			i++;
-			if (line / 5 < i){
-				line /= 10;
+
+	while (input){
+		input >> equitmentCodeFromFile;
+		getline(input, info);
+		i++;
+		if (i == line){
+			code = equitmentCodeFromFile;
+			number = 1;
+			flag = sell();
+			if (flag == true){
+				cout << equitmentCodeFromFile << " " << info << endl;
+				break;
 			}
-			if (i == line){
-				code = equitmentCodeFromFile;
-				number = 1;
-				flag=sell();
-				if (flag == true){
-					cout << equitmentCodeFromFile << " " << info << endl;
-					cout << equitmentCodeFromFile << " " << info << endl;
-					break;
-				}
-				
-				
-			}
+
+
 		}
 	}
+
+}
+void DigitalEquitment::deleteTheUnavailableEquitment(){
+	string allThing;
+	string codeFromFile;
+	string info;
+	string allInfo;
+	fstream input(fileName);
+
+	while (input){
+		input >> codeFromFile;
+		if (codeFromFile + info != allInfo){
+
+			allInfo = codeFromFile + " ";
+			input >> codeFromFile ;
+			allInfo += codeFromFile + " ";
+			input >> codeFromFile;
+			allInfo += codeFromFile + " ";
+			input >> codeFromFile;
+			if (codeFromFile != "0"){
+				allInfo += codeFromFile;
+				getline(input, info);
+				allInfo += info;
+				codeFromFile = "";
+				info = allInfo;
+				allThing += allInfo;
+				allThing += "\n";
+			}
+			else{
+				allInfo += codeFromFile;
+				getline(input, info);
+				allInfo += info;
+				codeFromFile = "";
+				info = allInfo;
+			}
+		}
+
+	}
+	input.close();
+	input.open(fileName, ios::out);
+	input << allThing << endl;
 }

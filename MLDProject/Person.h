@@ -12,7 +12,7 @@ private :
 	string personPhoneNumber;
 	
 public:
-	Person();
+	
 	Person(string code, string firstName, string lastName, string phoneNumber);
 	Person(string code);
 	~Person();

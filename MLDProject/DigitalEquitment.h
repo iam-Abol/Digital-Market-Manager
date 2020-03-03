@@ -26,7 +26,7 @@ public:
 	void editEquitment();
 	void printAllEquitment();
 	void searchEquitment();
-
+	void deleteTheUnavailableEquitment();
 	
 	bool sell();
 	void lottery();
