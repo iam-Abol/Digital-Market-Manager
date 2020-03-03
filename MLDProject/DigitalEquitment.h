@@ -13,6 +13,7 @@ private :
 	string details;
 	int price;
 	string otherThing;
+
 public:
 	DigitalEquitment();
 	DigitalEquitment(string code, string name, string brand, int number, string details, int price);
@@ -25,8 +26,9 @@ public:
 	void editEquitment();
 	void printAllEquitment();
 	void searchEquitment();
-	void writeToFile();
-	//void sell();
-	void sell();
+
+	
+	bool sell();
+	void lottery();
 };
 

@@ -10,13 +10,15 @@ private :
 	string firstName;
 	string lastName;
 	string personPhoneNumber;
+	int numberOfMember;
 public:
-	
+	Person();
 	Person(string code, string firstName, string lastName, string phoneNumber);
 	Person(string code);
 	~Person();
 	void addNew();
 	void edit();
 	void search();
+	void lottery();
 };
 

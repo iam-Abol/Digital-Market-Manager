@@ -1,5 +1,2 @@
-10 sumsong mobile 0 gh
-12 mobile hoawi 1 gh
-120 mobile gh 1 df
-111 mobile huawi 0 mait20pro
-
+1 mobile huawi 2 1111 120000 red
+2 mmmobile huawi 2 1111 120000 red

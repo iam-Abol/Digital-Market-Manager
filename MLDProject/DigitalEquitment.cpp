@@ -5,7 +5,7 @@
 #include <fstream>
 #include <string>
 
-string allThing;
+extern int numberOfEquitment;
 using namespace std;
 DigitalEquitment::DigitalEquitment(){};
 
@@ -139,6 +139,8 @@ void DigitalEquitment::addNewEquitment( ){
 		search << allInfo << endl;
 		cout << "New device added" << endl;
 		
+		numberOfEquitment++;
+		cout << numberOfEquitment << endl;
 	}
 	
 }
@@ -157,67 +159,15 @@ void DigitalEquitment::printAllEquitment(){
 
 
 
-//void DigitalEquitment::sell(){
-//	ifstream input(fileName);
-//	string codeFromFile;
-//	string allThing;
-//	string allInfo;
-//	string info;
-//	bool s = true;
-//	while (input){
-//		input >> codeFromFile;
-//		
-//		if (codeFromFile + info != allInfo){
-//			if (codeFromFile == code){
-//				allInfo += codeFromFile;
-//				string InfoFromFile;
-//				allInfo += InfoFromFile + " ";
-//				input >> InfoFromFile;
-//				allInfo += InfoFromFile+" ";
-//				input >> InfoFromFile;
-//				allInfo += InfoFromFile + " ";
-//				input >> InfoFromFile;
-//				string fileNumber1 = InfoFromFile;
-//				int fileNumber = stoi(fileNumber1);
-//				if (this->number <= fileNumber){
-//					fileNumber -= this->number;
-//					string newNumber = to_string(fileNumber);
-//					allInfo += newNumber + " ";
-//				}
-//				else{
-//					s = false;
-//				}
-//				getline(input, info);
-//				allInfo += info;
-//				allThing += allInfo;
-//				allThing += "\n";
-//			}
-//			if (codeFromFile != code){
-//				allThing += codeFromFile;
-//				getline(input, info);
-//				allThing += info;
-//				allThing += "\n";
-//				allInfo = codeFromFile + info;
-//			}
-//		}
-//	}
-//	input.close();
-//	if (s == true){
-//		cout << "!-Sales completed-!" << endl;
-//		ofstream output(fileName);
-//		output << allThing << endl;
-//	}
-//	else{
-//		cout << "Sales failed because the device did not have the desired number";
-//	}
-//}
 
-void DigitalEquitment::sell(){
+
+bool DigitalEquitment::sell(){
 	ifstream input(fileName);
 	string codeFromFile;
 	string info;
 	string allInfo;// this have one line and this is add to allLine
 	string allLine;// this string have every thing from file and new number for sell
+	bool flag=false;
 	while (input){
 		input >> codeFromFile;
 		string codeFromFile2 = codeFromFile;
@@ -232,7 +182,8 @@ void DigitalEquitment::sell(){
 				string fileNumber = codeFromFile;
 				int equitmentNumber = stoi(fileNumber);
 				if (this->number <= equitmentNumber){
-					cout << "sell completed" << endl;
+					
+					flag = true;
 					equitmentNumber -= this->number;
 					string newEquitmentNumber = to_string(equitmentNumber);
 					allInfo += newEquitmentNumber;
@@ -243,10 +194,11 @@ void DigitalEquitment::sell(){
 					allLine += "\n";
 					codeFromFile = "";
 					info = allInfo;
+
 				}
 				else{
 					allInfo += codeFromFile;
-					cout << "Sale failed";
+					
 					getline(input, info);
 					allInfo += info;
 					allLine += allInfo;
@@ -270,4 +222,43 @@ void DigitalEquitment::sell(){
 	ofstream output;
 	output.open(fileName, ios::out);
 	output << allLine << endl;
+	if (flag == true)
+		return true;
+	else
+		return false;
+}
+void DigitalEquitment::lottery(){
+
+	int line = rand();
+	
+	ifstream input(fileName);
+	string equitmentCodeFromFile;
+	string info;
+	int i = 0;
+	bool flag = false;
+
+	while (flag!=true){
+		while (input){
+			input >> equitmentCodeFromFile;
+			getline(input, info);
+			i++;
+			if (line / 10 < i){
+				line /= 10;
+			}
+			if (i == line){
+				code = equitmentCodeFromFile;
+				number = 1;
+				flag=sell();
+				if (flag == true){
+					cout << equitmentCodeFromFile << " " << info << endl;
+					cout << equitmentCodeFromFile << " " << info << endl;
+					break;
+				}
+				else{
+					i = 0;
+				}
+				
+			}
+		}
+	}
 }
