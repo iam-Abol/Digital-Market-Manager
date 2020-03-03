@@ -5,7 +5,7 @@
 #include <fstream>
 #include <string>
 
-extern int numberOfEquitment;
+
 using namespace std;
 DigitalEquitment::DigitalEquitment(){};
 
@@ -139,8 +139,6 @@ void DigitalEquitment::addNewEquitment( ){
 		search << allInfo << endl;
 		cout << "New device added" << endl;
 		
-		numberOfEquitment++;
-		cout << numberOfEquitment << endl;
 	}
 	
 }
@@ -230,19 +228,19 @@ bool DigitalEquitment::sell(){
 void DigitalEquitment::lottery(){
 
 	int line = rand();
-	
+	cout << line << endl;
 	ifstream input(fileName);
 	string equitmentCodeFromFile;
 	string info;
 	int i = 0;
 	bool flag = false;
 
-	while (flag!=true){
+	while (true){
 		while (input){
 			input >> equitmentCodeFromFile;
 			getline(input, info);
 			i++;
-			if (line / 10 < i){
+			if (line / 5 < i){
 				line /= 10;
 			}
 			if (i == line){
@@ -254,9 +252,7 @@ void DigitalEquitment::lottery(){
 					cout << equitmentCodeFromFile << " " << info << endl;
 					break;
 				}
-				else{
-					i = 0;
-				}
+				
 				
 			}
 		}

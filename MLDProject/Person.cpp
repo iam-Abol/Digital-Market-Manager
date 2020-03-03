@@ -6,7 +6,8 @@
 #include <fstream>
 #include <string>
 using namespace std;
-Person::Person(){};
+Person::Person(){
+};
 
 Person::Person(string code, string firstName, string lastName, string phoneNumber){
 	this->personCode = code;
@@ -48,7 +49,7 @@ void Person::addNew(){
 		search.open(personFile, ios::app);
 		search << allPersonInfo << endl;
 		cout << " ! Member added ! " << endl;
-		numberOfMember++;
+		
 	}
 	else{
 		cout << " ! Member not added because member similar to existing member exists ! \n";
@@ -106,20 +107,32 @@ void Person::search(){
 };
 void Person::lottery(){
 	int number = rand();
-	int line = number%numberOfMember;
 	ifstream input(personFile);
 	string info;
-	int i = 0;
-	while (true){
-		while (input){
-			getline(input, info);
-			i++;
-			if (i == line){
-				cout << info << " win :" << endl;
-
-				
-			}
-
+	int numberOfLine=0;
+	string allInfo;
+	while (input){
+		getline(input, info);
+		if (info != allInfo){
+			numberOfLine++;
+			allInfo = info;
 		}
 	}
+	numberOfLine--;
+	int winnerLineNumber = number%numberOfLine;
+	
+	int i = 0;
+	input.close();
+	ifstream lottery(personFile);
+	while (lottery){
+		getline(lottery, info);
+		i++;
+		if (i == winnerLineNumber){
+			cout << info << " win :" << endl;
+
+				
+		}
+
+	}
+	
 };

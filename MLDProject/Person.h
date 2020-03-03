@@ -10,7 +10,7 @@ private :
 	string firstName;
 	string lastName;
 	string personPhoneNumber;
-	int numberOfMember;
+	
 public:
 	Person();
 	Person(string code, string firstName, string lastName, string phoneNumber);
