@@ -13,7 +13,8 @@ int _tmain(int argc, _TCHAR* argv[])
 {
 
 	system("color 4");
-
+	DigitalEquitment obj("1", 10);
+	obj.sell();
 	cout << "1-Digital Equitment Management." << endl;
 	cout << "2-Members Management." << endl;
 	cout << "3-Digital Equitment Sale." << endl;
@@ -33,12 +34,26 @@ int _tmain(int argc, _TCHAR* argv[])
 		int number;
 		string details;
 		int price;
-		string otherThing;
+		string otherThing = "";
 		if (choose == 1){
-			cout << "enter the code name brand number details  price and other information: " << endl;
-			string allInfo;
-			getline(cin, allInfo);
-			DigitalEquitment obj(allInfo);
+			cout << "enter the code : " << endl;
+			cin >> code;
+			cout << "enter the name : " << endl;
+			cin >> name;
+			cout << "enter the brand : " << endl;
+			cin >> brand;
+			cout << "enter the number : " << endl;
+			cin >> number;
+			cout << "enter the details : " << endl;
+			cin >> details;
+			cout << "enter the price : " << endl;
+			cin >> price;
+
+			if (name == "mobile" || name == "notebook"){
+				cout << "enter other information : " << endl;
+				cin >> otherThing;
+			}
+			DigitalEquitment obj(code, name, brand, number, details, price, otherThing);
 			obj.addNewEquitment();
 		}
 		if (choose == 2){
@@ -91,27 +106,30 @@ int _tmain(int argc, _TCHAR* argv[])
 		}
 	}
 	if (n == 3){
-		cout << "enter the your code :" << endl;
+		cout << "enter the your code : " << endl;
 		string personCode;
-		getline(cin, personCode);
-		cout << "enter the equitment code :" << endl;
+		cin >> personCode;
+
+		cout << "enter the equitment code : " << endl;
 		string equitmentCode;
-		getline(cin, equitmentCode);
+		cin >> equitmentCode;
+
 		int number;
-		cout << "enter the number of equitment you want to buy" << endl;
+		cout << "enter the number of equitment you want to buy : " << endl;
 		cin >> number;
 		DigitalEquitment objForSelling(equitmentCode, number);
+		// = 
 		bool sell = objForSelling.sell();
 		if (sell == true){
-			cout << "sell completed" << endl;
-			fstream output("sell.txt");
-			output << personCode << " " << equitmentCode << " ";
-			string strNumber = to_string(number);
-			output << strNumber << endl;
+			cout << "sell completed\n";
+			string allSellingInformation;
+			allSellingInformation += personCode + " " + equitmentCode + " ";
+			string equitmentNumberAfterSell = to_string(number);
+			allSellingInformation += equitmentNumberAfterSell;
 		}
-
-		else
+		else{
 			cout << "sell fail" << endl;
+		}
 
 	}
 	if (n == 4){

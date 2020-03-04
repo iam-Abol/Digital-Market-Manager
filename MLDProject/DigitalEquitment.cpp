@@ -221,10 +221,14 @@ bool DigitalEquitment::sell(){
 	output.open(fileName, ios::out);
 	output << allLine << endl;
 	deleteTheUnavailableEquitment();
-	if (flag == true)
+	if (flag == true){
+		
 		return true;
-	else
+	}
+	else{
+		
 		return false;
+	}
 }
 void DigitalEquitment::lottery(){
 

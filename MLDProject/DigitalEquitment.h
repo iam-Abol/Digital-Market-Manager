@@ -9,9 +9,9 @@ private :
 	string code;
 	string name;
 	string brand;
-	int number;
+	int number=0;
 	string details;
-	int price;
+	int price=0;
 	string otherThing;
 
 public:
