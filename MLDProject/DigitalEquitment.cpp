@@ -180,7 +180,7 @@ bool DigitalEquitment::sell(){
 				string fileNumber = codeFromFile;
 				int equitmentNumber = stoi(fileNumber);
 				if (this->number <= equitmentNumber){
-					cout << "sell completed" << endl;
+					
 					flag = true;
 					equitmentNumber -= this->number;
 					string newEquitmentNumber = to_string(equitmentNumber);
@@ -196,7 +196,7 @@ bool DigitalEquitment::sell(){
 				}
 				else{
 					allInfo += codeFromFile;
-					cout << "sell not completed" << endl;
+					
 					getline(input, info);
 					allInfo += info;
 					allLine += allInfo;
@@ -244,6 +244,9 @@ void DigitalEquitment::lottery(){
 	}
 	numberOfLines--;
 	line = line%numberOfLines;
+	if (line == 0){
+		line = numberOfLines;
+	}
 	int i = 0;
 	bool flag = false;
 
@@ -256,10 +259,9 @@ void DigitalEquitment::lottery(){
 			code = equitmentCodeFromFile;
 			number = 1;
 			flag = sell();
-			if (flag == true){
-				cout << equitmentCodeFromFile << " " << info << endl;
-				break;
-			}
+			cout << equitmentCodeFromFile << " " << info << endl;
+			break;
+
 
 
 		}
@@ -278,7 +280,7 @@ void DigitalEquitment::deleteTheUnavailableEquitment(){
 		if (codeFromFile + info != allInfo){
 
 			allInfo = codeFromFile + " ";
-			input >> codeFromFile ;
+			input >> codeFromFile;
 			allInfo += codeFromFile + " ";
 			input >> codeFromFile;
 			allInfo += codeFromFile + " ";

@@ -117,9 +117,11 @@ void Person::lottery(){
 			allInfo = info;
 		}
 	}
-	numberOfLine--;
+	numberOfLine--;//
 	int winnerLineNumber = number%numberOfLine;
-	
+	if (winnerLineNumber == 0){
+		winnerLineNumber = numberOfLine;
+	}
 	int i = 0;
 	input.close();
 	ifstream lottery(personFile);
