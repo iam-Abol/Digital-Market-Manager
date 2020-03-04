@@ -13,8 +13,7 @@ int _tmain(int argc, _TCHAR* argv[])
 {
 
 	system("color 4");
-	DigitalEquitment obj("1", 10);
-	obj.sell();
+	
 	cout << "1-Digital Equitment Management." << endl;
 	cout << "2-Members Management." << endl;
 	cout << "3-Digital Equitment Sale." << endl;
@@ -58,13 +57,16 @@ int _tmain(int argc, _TCHAR* argv[])
 		}
 		if (choose == 2){
 			cout << "enter equitment code for editing : " << endl;
-			getline(cin, code);
+			cin >> code;
+			getchar();
 			DigitalEquitment objForEditing(code);
 			objForEditing.editEquitment();
+			
+			
 		}
 		if (choose == 3){
 			cout << "enter equitment code for search :" << endl;
-			getline(cin, code);
+			cin >> code;
 			DigitalEquitment objForSearch(code);
 			objForSearch.searchEquitment();
 		}
@@ -86,21 +88,24 @@ int _tmain(int argc, _TCHAR* argv[])
 		string phoneNumber;
 		if (choose == 1){
 			cout << "enter persin code , name , last name , phone number : ";
-			string allInfo;
-			getline(cin, allInfo);
+			cin >> code;
+			cin >> firstName;
+			cin >> lastName;
+			cin >> phoneNumber;
 
-			Person onjForAddNewMember(allInfo);
+			Person onjForAddNewMember(code,firstName,lastName,phoneNumber);
 			onjForAddNewMember.addNew();
 		}
 		if (choose == 2){
 			cout << "enter the member code for editing : " << endl;
-			getline(cin, code);
+			cin >> code;
+			getchar();
 			Person objForEdit(code);
 			objForEdit.edit();
 		}
 		if (choose == 3){
 			cout << "enter the code for search : " << endl;
-			getline(cin, code);
+			cin >> code;
 			Person objForSearch(code);
 			objForSearch.search();
 		}
@@ -126,6 +131,9 @@ int _tmain(int argc, _TCHAR* argv[])
 			allSellingInformation += personCode + " " + equitmentCode + " ";
 			string equitmentNumberAfterSell = to_string(number);
 			allSellingInformation += equitmentNumberAfterSell;
+			ofstream output;
+			output.open("sell.txt", ios::app);
+			output << allSellingInformation << endl;
 		}
 		else{
 			cout << "sell fail" << endl;
